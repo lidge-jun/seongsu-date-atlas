@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>성수 데이트 아틀라스</title>
+    <meta
+      name="description"
+      content="성수에서 실제로 쓰기 좋은 데이트 코스를 무드별로 정리한 편집형 가이드."
+    />
+    <meta property="og:title" content="성수 데이트 아틀라스" />
+    <meta
+      property="og:description"
+      content="첫 만남, 체험형, 노을형, 기념일형까지. 성수 데이트 코스를 동선 중심으로 정리한 가이드."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#13100c" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="site-header__inner">
+          <a class="site-mark" href="#hero" aria-label="성수 데이트 아틀라스 홈">
+            <span class="site-mark__line"></span>
+            <span class="site-mark__text">Seongsu Date Atlas</span>
+          </a>
+          <nav class="site-nav" aria-label="주요 메뉴">
+            <a href="#courses">코스</a>
+            <a href="#principles">기준</a>
+            <a href="#venues">장소</a>
+            <a href="#verified-notes">검증 메모</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <section class="hero section-full" id="hero" aria-labelledby="hero-heading">
+          <div class="hero__inner">
+            <div class="hero__copy reveal" style="--index: 0">
+              <p class="eyebrow">editorial city guide</p>
+              <h1 id="hero-heading">
+                성수는 한 군데보다
+                <span>흐름</span>으로 봐야 더 좋다.
+              </h1>
+              <p class="hero__lede">
+                커피 한 잔으로 시작하고, 중간에 체험을 끼우고, 식사 뒤에는 바나 산책으로
+                온도를 정리하는 식이다. 이 사이트는 그런 흐름을 기준으로 성수 데이트를 다시
+                묶은 작은 아틀라스다.
+              </p>
+              <div class="hero__actions">
+                <a class="button button--primary" href="#courses">오늘의 코스 고르기</a>
+                <a class="button button--ghost" href="#venues">장소 라이브러리 보기</a>
+              </div>
+            </div>
+
+            <aside class="hero__panel reveal" style="--index: 1" aria-label="핵심 요약">
+              <div class="hero-note">
+                <p class="hero-note__label">오늘 이 가이드가 하는 일</p>
+                <p class="hero-note__body">
+                  첫 만남부터 기념일까지, 성수 안에서 무드가 꺼지지 않는 동선을 고른다.
+                </p>
+              </div>
+              <div class="hero-stats" id="hero-stats" aria-label="가이드 통계"></div>
+              <div class="hero-quote">
+                <p>
+                  “잘 짠 코스는 맛집 하나보다 기억에 오래 남는다. 성수는 특히 그렇다.”
+                </p>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="intro section" aria-labelledby="intro-heading">
+          <div class="section-head">
+            <p class="eyebrow">how to read</p>
+            <h2 id="intro-heading">이 가이드는 이렇게 쓰면 된다.</h2>
+          </div>
+          <div class="intro-grid">
+            <article class="intro-card reveal" style="--index: 0">
+              <h3>먼저 무드를 고른다.</h3>
+              <p>
+                첫 만남인지, 사진을 남기고 싶은 날인지, 노을 산책을 끼우고 싶은 날인지부터
+                정하면 나머지가 훨씬 쉬워진다.
+              </p>
+            </article>
+            <article class="intro-card reveal" style="--index: 1">
+              <h3>앵커 스폿을 먼저 잡는다.</h3>
+              <p>
+                식당이나 바 한 군데를 기준점으로 정하고, 앞뒤를 가볍게 채우는 방식이 성수에서
+                가장 안정적이다.
+              </p>
+            </article>
+            <article class="intro-card reveal" style="--index: 2">
+              <h3>변동성 큰 곳은 마지막에 체크한다.</h3>
+              <p>
+                팝업, 체험 공간, 셀프사진관은 장소가 좋아도 당일 운영 여부가 더 중요하다. 아래
+                검증 메모를 출발 전에 한 번만 보면 된다.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="course-explorer section" id="courses" aria-labelledby="courses-heading">
+          <div class="section-head">
+            <p class="eyebrow">course selector</p>
+            <h2 id="courses-heading">오늘의 성수 코스를 먼저 고른다.</h2>
+          </div>
+
+          <div class="course-layout">
+            <div class="course-rail" id="course-rail" role="tablist" aria-label="데이트 코스"></div>
+            <article class="course-stage reveal" style="--index: 0" id="course-stage" aria-live="polite"></article>
+          </div>
+        </section>
+
+        <section class="principles section" id="principles" aria-labelledby="principles-heading">
+          <div class="section-head">
+            <p class="eyebrow">route logic</p>
+            <h2 id="principles-heading">성수 코스를 짤 때 자주 먹히는 규칙</h2>
+          </div>
+          <div class="principles-grid" id="principles-grid"></div>
+        </section>
+
+        <section class="venue-library section" id="venues" aria-labelledby="venues-heading">
+          <div class="section-head">
+            <p class="eyebrow">venue library</p>
+            <h2 id="venues-heading">장소는 역할로 묶으면 훨씬 잘 보인다.</h2>
+          </div>
+
+          <div class="venue-toolbar">
+            <div class="chip-group" id="venue-filters" aria-label="장소 필터"></div>
+            <p class="venue-toolbar__note">
+              같은 무드 안에서만 바꿔 끼우면 코스 전체 톤이 쉽게 무너지지 않는다.
+            </p>
+          </div>
+
+          <div class="venue-grid" id="venue-grid"></div>
+        </section>
+
+        <section class="checklist section" aria-labelledby="checklist-heading">
+          <div class="section-head">
+            <p class="eyebrow">departure checklist</p>
+            <h2 id="checklist-heading">출발 직전 5분 체크리스트</h2>
+          </div>
+
+          <div class="checklist-board">
+            <label class="check-item">
+              <input type="checkbox" />
+              <span>저녁 메인 장소 예약 또는 웨이팅 방식 확인</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" />
+              <span>팝업이나 체험 공간의 당일 운영 여부 확인</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" />
+              <span>노을형 코스면 해 지는 시간 기준으로 산책 구간 역산</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" />
+              <span>바나 와인바는 마지막 한 곳만 확실히 정하고, 나머지는 유연하게</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="verified section" id="verified-notes" aria-labelledby="verified-heading">
+          <div class="section-head">
+            <p class="eyebrow">verified notes</p>
+            <h2 id="verified-heading">변동성 큰 장소는 공식 정보만 따로 붙여 둔다.</h2>
+          </div>
+          <div class="verified-grid" id="verified-grid"></div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="site-footer__inner">
+          <div>
+            <p class="site-footer__title">성수 데이트 아틀라스</p>
+            <p class="site-footer__body">
+              로컬 정리 메모를 바탕으로 다시 묶은 공개용 성수 데이트 가이드.
+            </p>
+          </div>
+          <div class="site-footer__links">
+            <a href="https://github.com/lidge-jun/seongsu-date-atlas" target="_blank" rel="noreferrer">
+              GitHub repository
+            </a>
+            <a href="#verified-notes">검증 메모</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <noscript>
+      이 페이지는 자바스크립트 없이도 읽을 수 있지만, 코스 선택과 장소 필터는 동작하지 않는다.
+    </noscript>
+
+    <script src="./data.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
