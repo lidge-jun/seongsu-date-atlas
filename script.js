@@ -7,12 +7,25 @@ const principlesGrid = document.querySelector("#principles-grid");
 const venueFilters = document.querySelector("#venue-filters");
 const venueGrid = document.querySelector("#venue-grid");
 const verifiedGrid = document.querySelector("#verified-grid");
+const mapLegend = document.querySelector("#map-legend");
 
 let activeCourseId = data.courses[0].id;
 let activeVenueFilter = "all";
+let homeMap;
+let homeMarkers;
+
+function placeMapLink(place) {
+  return `./place.html?slug=${place.slug}`;
+}
 
 function renderHeroStats() {
-  heroStats.innerHTML = data.stats
+  const computedStats = [
+    { value: String(data.courses.length), label: "course tracks" },
+    { value: String(data.places.length), label: "clickable places" },
+    { value: String(data.verifiedNotes.length), label: "verified anchors" }
+  ];
+
+  heroStats.innerHTML = computedStats
     .map(
       (stat) => `
         <div class="hero-stat">
@@ -43,6 +56,18 @@ function renderCourseRail() {
       `
     )
     .join("");
+}
+
+function renderTimelineLinks(slugs) {
+  return slugs
+    .map((slug) => data.places.find((item) => item.slug === slug))
+    .filter(Boolean)
+    .map(
+      (place) => `
+        <a class="timeline-link" href="${placeMapLink(place)}">${place.name}</a>
+      `
+    )
+    .join('<span class="timeline-link__divider">·</span>');
 }
 
 function renderCourseStage() {
@@ -81,8 +106,8 @@ function renderCourseStage() {
             <li class="timeline__item">
               <div class="timeline__time">${item.time}</div>
               <div class="timeline__body">
-                <h4>${item.venue}</h4>
-                <p>${item.description}</p>
+                <h4>${renderTimelineLinks(item.places)}</h4>
+                <p>${item.note}</p>
                 <p class="timeline__swap">교체 카드: ${item.swap}</p>
               </div>
             </li>
@@ -134,25 +159,34 @@ function renderVenueFilters() {
     .join("");
 }
 
-function renderVenueGrid() {
-  const visibleVenues =
-    activeVenueFilter === "all"
-      ? data.venues
-      : data.venues.filter((venue) => venue.category === activeVenueFilter);
+function visiblePlaces() {
+  return activeVenueFilter === "all"
+    ? data.places
+    : data.places.filter((place) => place.category === activeVenueFilter);
+}
 
-  venueGrid.innerHTML = visibleVenues
+function renderVenueGrid() {
+  venueGrid.innerHTML = visiblePlaces()
     .map(
-      (venue) => `
-        <article class="venue-card">
-          <p class="venue-card__kicker">${venue.kicker}</p>
-          <h3>${venue.name}</h3>
-          <p>${venue.description}</p>
+      (place) => `
+        <a class="venue-card venue-card--link" href="${placeMapLink(place)}">
+          <p class="venue-card__kicker">${place.kicker}</p>
+          <h3>${place.name}</h3>
+          <p>${place.summary}</p>
           <div class="venue-card__meta">
-            ${venue.meta.map((label) => `<span class="venue-pill">${label}</span>`).join("")}
+            ${place.tags.slice(0, 3).map((label) => `<span class="venue-pill">${label}</span>`).join("")}
           </div>
-        </article>
+          <span class="venue-card__cta">상세 보기</span>
+        </a>
       `
     )
+    .join("");
+}
+
+function renderMapLegend() {
+  mapLegend.innerHTML = data.venueFilters
+    .filter((filter) => filter.id !== "all")
+    .map((filter) => `<span class="venue-pill">${filter.label}</span>`)
     .join("");
 }
 
@@ -172,6 +206,48 @@ function renderVerifiedNotes() {
     .join("");
 }
 
+function initHomeMap() {
+  const mapElement = document.querySelector("#home-map");
+  if (!window.L || !mapElement) return;
+
+  homeMap = L.map(mapElement, { scrollWheelZoom: false }).setView([37.5434, 127.0518], 14);
+
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(homeMap);
+
+  updateHomeMap();
+}
+
+function updateHomeMap() {
+  if (!homeMap || !window.L) return;
+
+  if (homeMarkers) {
+    homeMarkers.remove();
+  }
+
+  const markers = visiblePlaces()
+    .filter((place) => place.coordinates)
+    .map((place) =>
+      L.marker([place.coordinates.lat, place.coordinates.lon]).bindPopup(
+        `
+          <strong>${place.name}</strong><br>
+          ${place.area}<br>
+          <a href="${placeMapLink(place)}">상세페이지 보기</a>
+        `
+      )
+    );
+
+  homeMarkers = L.featureGroup(markers).addTo(homeMap);
+
+  if (markers.length > 0) {
+    homeMap.fitBounds(homeMarkers.getBounds().pad(0.15));
+  }
+
+  setTimeout(() => homeMap.invalidateSize(), 150);
+}
+
 function bindEvents() {
   courseRail.addEventListener("click", (event) => {
     const button = event.target.closest("[data-course-id]");
@@ -189,6 +265,7 @@ function bindEvents() {
     activeVenueFilter = button.dataset.filterId;
     renderVenueFilters();
     renderVenueGrid();
+    updateHomeMap();
   });
 }
 
@@ -199,7 +276,9 @@ function init() {
   renderPrinciples();
   renderVenueFilters();
   renderVenueGrid();
+  renderMapLegend();
   renderVerifiedNotes();
+  initHomeMap();
   bindEvents();
 }
 

@@ -630,6 +630,20 @@ input {
   border-radius: var(--radius-lg);
 }
 
+.venue-card--link {
+  display: block;
+  transition:
+    transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.24s ease,
+    background-color 0.24s ease;
+}
+
+.venue-card--link:hover,
+.venue-card--link:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(200, 110, 42, 0.22);
+}
+
 .venue-card__kicker {
   margin: 0 0 0.55rem;
   color: var(--accent-deep);
@@ -657,11 +671,163 @@ input {
   font-size: 0.84rem;
 }
 
+.venue-card__cta,
+.sidebar-card__link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  color: var(--accent-deep);
+  font-weight: 800;
+}
+
 .venue-toolbar__note {
   margin: 0;
   max-width: 26rem;
   color: var(--text-soft);
   line-height: 1.65;
+}
+
+.map-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.7fr) minmax(0, 1.3fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.map-shell__copy,
+.map-shell__canvas,
+.sidebar-card,
+.place-section {
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid rgba(90, 61, 33, 0.08);
+  box-shadow: var(--shadow-soft);
+}
+
+.map-shell__lede {
+  margin: 0 0 1rem;
+  color: var(--text-soft);
+  line-height: 1.72;
+}
+
+.map-shell__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.map-shell__canvas,
+.place-map__canvas {
+  min-height: 480px;
+  overflow: hidden;
+}
+
+.timeline-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(200, 110, 42, 0.35);
+  text-underline-offset: 0.18em;
+}
+
+.timeline-link__divider {
+  display: inline-flex;
+  margin: 0 0.4rem;
+  color: var(--text-soft);
+}
+
+.place-main .section {
+  padding-top: 3.8rem;
+}
+
+.place-hero__inner {
+  display: grid;
+  gap: 1rem;
+}
+
+.place-hero h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fluid-h1);
+  line-height: 0.94;
+  letter-spacing: -0.06em;
+}
+
+.place-hero__lede {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.78;
+  font-size: var(--fluid-body);
+}
+
+.place-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.place-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.7fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.place-layout__main,
+.place-layout__aside {
+  display: grid;
+  gap: 1rem;
+}
+
+.place-section h2 {
+  margin: 0 0 0.8rem;
+  font-size: var(--fluid-h3);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.place-section p,
+.detail-list,
+.source-list,
+.sidebar-card__value {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.75;
+}
+
+.detail-list,
+.source-list {
+  padding-left: 1.2rem;
+}
+
+.detail-list li,
+.source-list li {
+  margin-bottom: 0.55rem;
+}
+
+.source-list a {
+  color: var(--accent-deep);
+  text-decoration: underline;
+  text-decoration-color: rgba(200, 110, 42, 0.35);
+  text-underline-offset: 0.18em;
+}
+
+.sidebar-card__label {
+  margin: 0 0 0.5rem;
+  color: var(--accent-deep);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 14px;
+}
+
+.leaflet-popup-content {
+  line-height: 1.6;
 }
 
 .checklist-board {
@@ -774,7 +940,9 @@ input {
   .venue-grid,
   .checklist-board,
   .course-meta,
-  .course-stage__footer {
+  .course-stage__footer,
+  .map-shell,
+  .place-layout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -810,7 +978,9 @@ input {
   .venue-grid,
   .checklist-board,
   .course-meta,
-  .course-stage__footer {
+  .course-stage__footer,
+  .map-shell,
+  .place-layout {
     grid-template-columns: 1fr;
   }
 
