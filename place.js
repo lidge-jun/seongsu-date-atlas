@@ -1,31 +1,35 @@
 const data = window.siteData;
+const shared = window.siteShared;
 
 const params = new URLSearchParams(window.location.search);
 const slug = params.get("slug");
-const place = data.places.find((item) => item.slug === slug) || data.places[0];
+const place = shared.getPlaceBySlug(slug) || data.places[0];
 
 const hero = document.querySelector("#place-hero");
 const content = document.querySelector("#place-content");
 const sidebar = document.querySelector("#place-sidebar");
 const relatedGrid = document.querySelector("#related-grid");
 
-function mapLink(address) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
-}
-
 function renderHero() {
+  const image = shared.getPlaceImage(place);
   document.title = `${place.name} | 성수 데이트 아틀라스`;
 
   hero.innerHTML = `
-    <div class="place-hero__inner reveal" style="--index: 0">
-      <p class="eyebrow">${place.kicker}</p>
-      <h1>${place.name}</h1>
-      <p class="place-hero__lede">${place.positioning}</p>
-      <div class="place-hero__meta">
-        <span class="venue-pill">${place.categoryLabel}</span>
-        <span class="venue-pill">${place.area}</span>
-        <span class="venue-pill">${place.detailLevel}</span>
+    <div class="place-hero__layout">
+      <div class="place-hero__copy reveal" style="--index: 0">
+        <p class="eyebrow">${place.kicker}</p>
+        <h1>${place.name}</h1>
+        <p class="place-hero__lede">${place.positioning}</p>
+        <div class="place-hero__meta">
+          <span class="venue-pill">${place.categoryLabel}</span>
+          <span class="venue-pill">${place.area}</span>
+          <span class="venue-pill">${place.detailLevel}</span>
+        </div>
       </div>
+      <figure class="place-hero__media reveal" style="--index: 1">
+        <img src="${image.src}" alt="${image.alt}" loading="lazy" />
+        <figcaption>${shared.renderCredit(image, "Photo")}</figcaption>
+      </figure>
     </div>
   `;
 }
@@ -72,7 +76,7 @@ function renderSidebar() {
     <div class="sidebar-card reveal" style="--index: 0">
       <p class="sidebar-card__label">주소</p>
       <p class="sidebar-card__value">${place.address}</p>
-      <a class="sidebar-card__link" href="${mapLink(place.address)}" target="_blank" rel="noreferrer">
+      <a class="sidebar-card__link" href="${shared.placeMapLink(place.address)}" target="_blank" rel="noreferrer">
         외부 지도에서 열기
       </a>
     </div>
@@ -99,9 +103,13 @@ function renderRelated() {
     .slice(0, 3);
 
   relatedGrid.innerHTML = related
-    .map(
-      (item) => `
+    .map((item) => {
+      const image = shared.getPlaceImage(item);
+      return `
         <a class="venue-card venue-card--link" href="./place.html?slug=${item.slug}">
+          <figure class="venue-card__media">
+            <img src="${image.src}" alt="${image.alt}" loading="lazy" />
+          </figure>
           <p class="venue-card__kicker">${item.kicker}</p>
           <h3>${item.name}</h3>
           <p>${item.summary}</p>
@@ -110,8 +118,8 @@ function renderRelated() {
           </div>
           <span class="venue-card__cta">상세 보기</span>
         </a>
-      `
-    )
+      `;
+    })
     .join("");
 }
 

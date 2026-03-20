@@ -1,11 +1,17 @@
 const data = window.siteData;
+const images = window.siteImages;
+const clusters = window.routeClusters;
+const shared = window.siteShared;
 
 const heroStats = document.querySelector("#hero-stats");
+const heroMedia = document.querySelector("#hero-media");
 const courseRail = document.querySelector("#course-rail");
 const courseStage = document.querySelector("#course-stage");
+const clusterGrid = document.querySelector("#cluster-grid");
 const principlesGrid = document.querySelector("#principles-grid");
 const venueFilters = document.querySelector("#venue-filters");
 const venueGrid = document.querySelector("#venue-grid");
+const galleryGrid = document.querySelector("#gallery-grid");
 const verifiedGrid = document.querySelector("#verified-grid");
 const mapLegend = document.querySelector("#map-legend");
 
@@ -14,15 +20,11 @@ let activeVenueFilter = "all";
 let homeMap;
 let homeMarkers;
 
-function placeMapLink(place) {
-  return `./place.html?slug=${place.slug}`;
-}
-
 function renderHeroStats() {
   const computedStats = [
     { value: String(data.courses.length), label: "course tracks" },
     { value: String(data.places.length), label: "clickable places" },
-    { value: String(data.verifiedNotes.length), label: "verified anchors" }
+    { value: String(clusters.length), label: "nearby clusters" }
   ];
 
   heroStats.innerHTML = computedStats
@@ -32,6 +34,23 @@ function renderHeroStats() {
           <span class="hero-stat__value">${stat.value}</span>
           <span class="hero-stat__label">${stat.label}</span>
         </div>
+      `
+    )
+    .join("");
+}
+
+function renderHeroMedia() {
+  const picks = ["hero-primary", "coffee-interior", "han-river"]
+    .map((id) => images.slots.find((item) => item.id === id))
+    .filter(Boolean);
+
+  heroMedia.innerHTML = picks
+    .map(
+      (image, index) => `
+        <figure class="hero-shot hero-shot--${index + 1}">
+          <img src="${image.src}" alt="${image.alt}" loading="lazy" />
+          <figcaption>${shared.renderCredit(image, "Photo")}</figcaption>
+        </figure>
       `
     )
     .join("");
@@ -60,11 +79,11 @@ function renderCourseRail() {
 
 function renderTimelineLinks(slugs) {
   return slugs
-    .map((slug) => data.places.find((item) => item.slug === slug))
+    .map((slug) => shared.getPlaceBySlug(slug))
     .filter(Boolean)
     .map(
       (place) => `
-        <a class="timeline-link" href="${placeMapLink(place)}">${place.name}</a>
+        <a class="timeline-link" href="./place.html?slug=${place.slug}">${place.name}</a>
       `
     )
     .join('<span class="timeline-link__divider">·</span>');
@@ -129,6 +148,40 @@ function renderCourseStage() {
   `;
 }
 
+function renderClusters() {
+  clusterGrid.innerHTML = clusters
+    .map((cluster, index) => {
+      const image = shared.getImageById(cluster.imageId);
+      const placesMarkup = cluster.places
+        .map((slug) => shared.getPlaceBySlug(slug))
+        .filter(Boolean)
+        .map((place) => `<a href="./place.html?slug=${place.slug}">${place.name}</a>`)
+        .join(" → ");
+
+      return `
+        <article class="cluster-card reveal" style="--index: ${index}">
+          <figure class="cluster-card__media">
+            <img src="${image.src}" alt="${image.alt}" loading="lazy" />
+            <figcaption>${shared.renderCredit(image, "Photo")}</figcaption>
+          </figure>
+          <div class="cluster-card__body">
+            <p class="cluster-card__eyebrow">${cluster.budget}</p>
+            <h3>${cluster.title}</h3>
+            <p class="cluster-card__subtitle">${cluster.subtitle}</p>
+            <p>${cluster.walkLogic}</p>
+            <p class="cluster-card__route">${placesMarkup}</p>
+            <div class="cluster-card__meta">
+              <span class="venue-pill">${cluster.startTime}</span>
+              <span class="venue-pill">${cluster.fit}</span>
+            </div>
+            <p class="cluster-card__caution">주의: ${cluster.caution}</p>
+          </div>
+        </article>
+      `;
+    })
+    .join("");
+}
+
 function renderPrinciples() {
   principlesGrid.innerHTML = data.principles
     .map(
@@ -167,9 +220,13 @@ function visiblePlaces() {
 
 function renderVenueGrid() {
   venueGrid.innerHTML = visiblePlaces()
-    .map(
-      (place) => `
-        <a class="venue-card venue-card--link" href="${placeMapLink(place)}">
+    .map((place) => {
+      const image = shared.getPlaceImage(place);
+      return `
+        <a class="venue-card venue-card--link" href="./place.html?slug=${place.slug}">
+          <figure class="venue-card__media">
+            <img src="${image.src}" alt="${image.alt}" loading="lazy" />
+          </figure>
           <p class="venue-card__kicker">${place.kicker}</p>
           <h3>${place.name}</h3>
           <p>${place.summary}</p>
@@ -178,6 +235,26 @@ function renderVenueGrid() {
           </div>
           <span class="venue-card__cta">상세 보기</span>
         </a>
+      `;
+    })
+    .join("");
+}
+
+function renderGallery() {
+  const picks = ["aerial-seoul", "drip-coffee", "dessert-mochi", "wine-bar", "fine-dining", "city-alley"]
+    .map((id) => shared.getImageById(id))
+    .filter(Boolean);
+
+  galleryGrid.innerHTML = picks
+    .map(
+      (image) => `
+        <figure class="gallery-card">
+          <img src="${image.src}" alt="${image.alt}" loading="lazy" />
+          <figcaption>
+            <p>${image.alt}</p>
+            <div>${shared.renderCredit(image, "Photo")}</div>
+          </figcaption>
+        </figure>
       `
     )
     .join("");
@@ -234,7 +311,7 @@ function updateHomeMap() {
         `
           <strong>${place.name}</strong><br>
           ${place.area}<br>
-          <a href="${placeMapLink(place)}">상세페이지 보기</a>
+          <a href="./place.html?slug=${place.slug}">상세페이지 보기</a>
         `
       )
     );
@@ -271,11 +348,14 @@ function bindEvents() {
 
 function init() {
   renderHeroStats();
+  renderHeroMedia();
+  renderClusters();
   renderCourseRail();
   renderCourseStage();
   renderPrinciples();
   renderVenueFilters();
   renderVenueGrid();
+  renderGallery();
   renderMapLegend();
   renderVerifiedNotes();
   initHomeMap();

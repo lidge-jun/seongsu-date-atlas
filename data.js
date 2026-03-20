@@ -6,6 +6,7 @@ window.siteData = {
   ],
   venueFilters: [
     { id: "all", label: "전체" },
+    { id: "brunch", label: "브런치" },
     { id: "coffee", label: "카페" },
     { id: "experience", label: "체험" },
     { id: "dessert", label: "디저트" },
@@ -1247,6 +1248,165 @@ window.siteData = {
         { label: "팝가패스 - 하하하성수", url: "https://popga.co.kr/popga-pass/3464" },
         { label: "트립닷컴 - 하하하 디저트 맛집", url: "https://kr.trip.com/moments/detail/seongdong-gu-2016444-136651426/" },
         { label: "Keyzard - 하하하성수 후기", url: "https://www.keyzard.cc/hamster0_/nb/223836311534" }
+      ]
+    },
+    {
+      slug: "little-forest-seongsu",
+      name: "리틀포레스트",
+      kicker: "light brunch start",
+      category: "brunch",
+      categoryLabel: "브런치",
+      area: "서울숲 입구",
+      detailLevel: "재확인 권장",
+      address: "서울 성동구 성수일로12길 23 2층",
+      coordinates: { lat: 37.5428, lon: 127.0469 },
+      positioning:
+        "서울숲 들어가기 전 가볍게 브런치로 시작하기 좋은 건강식 브런치 카드다.",
+      summary:
+        "샥슈카, 샌드위치, 제철 재료 중심 메뉴로 산책 전 텐션을 부드럽게 올리기 좋다.",
+      highlights: [
+        "가볍지만 식사로 성립되는 메뉴 구성이 강하다.",
+        "서울숲 입구 코스 시작점으로 잘 붙는다.",
+        "브런치형 데이트에서 과하지 않은 건강한 인상을 만든다."
+      ],
+      hours: "10:00-18:00 또는 10:00-19:00 신호. 최신값 재확인 권장.",
+      dateUse:
+        "서울숲 산책형, 노을형 코스의 낮 시작점으로 특히 좋다.",
+      caution:
+        "운영시간 표기가 갈리는 편이라 출발 전 한 번 더 확인하는 게 안전하다.",
+      courseFit: "서울숲 브런치형, 노을형 초반",
+      tags: ["브런치", "서울숲 입구", "가벼운 시작", "제철 재료"],
+      sources: [
+        { label: "식후경 - 리틀포레스트", url: "https://eatbuy.co.kr/spot/18" },
+        { label: "뽈레 - 리틀 포레스트", url: "https://polle.com/place/1DEmyx/%EB%A6%AC%ED%8B%80%20%ED%8F%AC%EB%A0%88%EC%8A%A4%ED%8A%B8" },
+        { label: "물댄동산여행노트 - 리틀포레스트", url: "https://travel.wg2030.com/66" }
+      ]
+    },
+    {
+      slug: "a-piece-and-peace",
+      name: "어피스앤드피스",
+      kicker: "cake anchor",
+      category: "dessert",
+      categoryLabel: "디저트",
+      area: "서울숲 입구",
+      detailLevel: "재확인 권장",
+      address: "서울 성동구 성수일로12길 17 1층",
+      coordinates: { lat: 37.5429, lon: 127.0466 },
+      positioning:
+        "케이크와 구움과자 결이 강한, 성수 초반 혹은 기념일 전 짧은 디저트 앵커로 쓰기 좋은 카페다.",
+      summary:
+        "햇빛 좋은 디저트 카페 톤이 강해서 서울숲 입구 코스의 부드러운 당 포인트로 쓰기 좋다.",
+      highlights: [
+        "수제 케이크, 파이, 구움과자 계열 반응이 좋다.",
+        "기념일 전 짧게 들르는 디저트 앵커로 적합하다.",
+        "서울숲 입구 코스와 묶기 좋다."
+      ],
+      hours: "최신 공개 운영시간 신호가 약해 재확인 권장.",
+      dateUse:
+        "서울숲권 브런치 뒤 디저트, 혹은 기념일 전 가볍게 분위기 맞추는 용도로 좋다.",
+      caution:
+        "운영정보가 약한 편이라 메인 앵커보다 보조 카드로 쓰는 편이 안전하다.",
+      courseFit: "서울숲 디저트 앵커",
+      tags: ["케이크", "구움과자", "서울숲 입구", "재확인 권장"],
+      sources: [
+        { label: "잡코리아 기업정보 - 어피스앤드피스", url: "https://www.jobkorea.co.kr/recruit/co_read/c/apandp" },
+        { label: "잡코리아 채용공고 - 어피스앤드피스", url: "https://www.jobkorea.co.kr/Recruit/GI_Read/46324147" }
+      ]
+    },
+    {
+      slug: "pizzeria-hio-seongsu",
+      name: "피제리아히오 성수점",
+      kicker: "wood-fired pizza",
+      category: "dinner",
+      categoryLabel: "저녁",
+      area: "서울숲 입구",
+      detailLevel: "재확인 권장",
+      address: "서울 성동구 성수일로 20 1층 101호",
+      coordinates: { lat: 37.5414, lon: 127.0457 },
+      positioning:
+        "서울숲권에서 가볍지만 제대로 된 피자 데이트로 쓰기 좋은 화덕피자 카드다.",
+      summary:
+        "참나무 장작 화덕과 나폴리 스타일 도우가 분명해서 피자 중심 데이트에 설득력이 높다.",
+      highlights: [
+        "100% 참나무 장작 화덕과 나폴리 스타일 도우가 포인트다.",
+        "피자와 파스타를 나눠 먹는 데이트 구성이 자연스럽다.",
+        "서울숲 입구 코스와 근거리 연결이 좋다."
+      ],
+      hours: "11:30-21:00 전후 / 브레이크타임 있음 / 일 휴무 쪽 신호. 재확인 권장.",
+      dateUse:
+        "서울숲권에서 코너룸보다 조금 더 캐주얼하게, 하지만 식사 목적지는 분명하게 잡고 싶을 때 좋다.",
+      caution:
+        "공식성 높은 시간 출처보다는 후기·리뷰 기반 신호가 강하다.",
+      courseFit: "서울숲권 피자 데이트",
+      tags: ["화덕 피자", "나폴리 스타일", "서울숲 입구", "재확인 권장"],
+      sources: [
+        { label: "식신 - 피제리아히오", url: "https://www.siksinhot.com/P/1779904" },
+        { label: "판다랭크 - 피제리아히오 화덕피자", url: "https://pandarank.net/contents/6929d8506ad841f5b9acaef9" },
+        { label: "Keyzard - 피제리아히오 후기", url: "https://www.keyzard.cc/holocelina/nb/223969507373" }
+      ]
+    },
+    {
+      slug: "marione-seongsu",
+      name: "마리오네",
+      kicker: "destination pizza",
+      category: "dinner",
+      categoryLabel: "저녁",
+      area: "성수2가·북성수 경계",
+      detailLevel: "재확인 권장",
+      address: "서울 성동구 광나루로2길 23-1 1층",
+      coordinates: { lat: 37.5442, lon: 127.0498 },
+      positioning:
+        "성수에서 오늘은 피자 자체가 목적이라는 날에 쓰는 최상단 화덕피자 카드다.",
+      summary:
+        "가리발디 피자와 강한 화덕 존재감, 웨이팅 경험까지 포함해 피자 목적지로 기능하는 곳이다.",
+      highlights: [
+        "가리발디 피자와 챔피언 셰프 문맥이 강하게 붙는다.",
+        "피자 자체가 목적지가 되는 타입이다.",
+        "북성수 방향 목적지형 데이트 카드로 강하다."
+      ],
+      hours: "11:30-20:30 전후 / 브레이크 15:00-17:00 / 휴무일 신호 있음. 재확인 권장.",
+      dateUse:
+        "오늘은 피자 자체가 메인 콘텐츠인 데이트, 혹은 숨은 카드 섹션에서 클릭률을 올릴 때 좋다.",
+      caution:
+        "주소와 운영시간이 출처마다 조금씩 흔들려 메인 라인업보다는 숨은 카드나 재확인 권장 뱃지가 안전하다.",
+      courseFit: "북성수 목적지형 피자 코스",
+      tags: ["목적지형 피자", "화덕 존재감", "웨이팅", "재확인 권장"],
+      sources: [
+        { label: "쮸빠찌에 - 마리오네 후기", url: "https://dayaa.tistory.com/546" },
+        { label: "hctrip - 마리오네 후기", url: "https://hctrip.tistory.com/100" },
+        { label: "줌뉴스 - 마리오네 2026", url: "https://m.news.zum.com/articles/101857093/%EA%B9%80%EC%A3%BC%EC%98%81-%EB%A7%88%EB%A6%AC%EC%98%A4%EB%84%A4-%EB%8C%80%ED%91%9C%EC%9D%98-top-%EC%9D%B4%ED%83%88%EB%A6%AC%EC%95%88-%EB%A0%88%EC%8A%A4%ED%86%A0%EB%9E%91-2026-%EC%88%98%EC%83%81-%EA%B8%B0%EB%85%90%EC%B4%AC%EC%98%81" }
+      ]
+    },
+    {
+      slug: "prego-club-seongsu",
+      name: "프레고클럽",
+      kicker: "cute casual dinner",
+      category: "dinner",
+      categoryLabel: "저녁",
+      area: "서울숲 입구·상원길",
+      detailLevel: "검증됨",
+      address: "서울 성동구 상원2길 1-10 B1",
+      coordinates: { lat: 37.5446, lon: 127.0453 },
+      positioning:
+        "귀여운 비주얼과 파스타·오니기리 조합으로 클릭률이 잘 나올 캐주얼 저녁 카드다.",
+      summary:
+        "경양식 레스토랑 같은 친근한 톤으로, 서울숲 입구 캐주얼 저녁형 코스에 잘 붙는다.",
+      highlights: [
+        "오니기리와 파스타 조합이 대표 포인트다.",
+        "귀엽고 친근한 톤이라 가벼운 기념일이나 캐주얼 데이트에 잘 맞는다.",
+        "오픈런과 웨이팅 문맥이 반복적으로 보인다."
+      ],
+      hours: "11:30-21:00 / 브레이크 15:00-17:00",
+      dateUse:
+        "너무 무겁지 않은 저녁, 혹은 사진 잘 남는 캐주얼 밥집형 데이트에 좋다.",
+      caution:
+        "웨이팅 문맥이 있는 편이라 피크 시간엔 대기 각오가 필요하다.",
+      courseFit: "서울숲 입구 캐주얼 저녁",
+      tags: ["캐주얼 저녁", "오니기리", "친근한 톤", "웨이팅 가능"],
+      sources: [
+        { label: "에스콰이어 코리아 - 성수동에 터를 잡은 이유", url: "https://www.esquirekorea.co.kr/article/1869559" },
+        { label: "프레고클럽 후기", url: "https://mejusa81.com/entry/%EC%84%B1%EC%88%98-%ED%95%AB%ED%94%8C-%EC%9D%B8%EC%A0%95-%ED%94%84%EB%A0%88%EA%B3%A0%ED%81%B4%EB%9F%BD-%EC%98%A4%ED%94%88%EB%9F%B0%EC%9C%BC%EB%A1%9C-%EB%A7%9B%EB%B3%B8-%EA%B7%80%EC%97%BC%EB%BD%80%EC%A7%9D-%EC%98%A4%EB%8B%88%EA%B8%B0%EB%A6%AC-%ED%8C%8C%EC%8A%A4%ED%83%80" },
+        { label: "프레고클럽 웨이팅 후기", url: "https://cindyleee.tistory.com/646" }
       ]
     }
   ]

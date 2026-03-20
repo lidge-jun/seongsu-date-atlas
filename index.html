@@ -70,6 +70,7 @@
             </div>
 
             <aside class="hero__panel reveal" style="--index: 1" aria-label="핵심 요약">
+              <div class="hero-media" id="hero-media"></div>
               <div class="hero-note">
                 <p class="hero-note__label">이제 가능한 것</p>
                 <p class="hero-note__body">
@@ -115,6 +116,14 @@
           </div>
         </section>
 
+        <section class="cluster-section section" id="nearby-clusters" aria-labelledby="clusters-heading">
+          <div class="section-head">
+            <p class="eyebrow">nearby clusters</p>
+            <h2 id="clusters-heading">가까운 거리대로 묶으면 성수는 더 쉬워진다.</h2>
+          </div>
+          <div class="cluster-grid" id="cluster-grid"></div>
+        </section>
+
         <section class="course-explorer section" id="courses" aria-labelledby="courses-heading">
           <div class="section-head">
             <p class="eyebrow">course selector</p>
@@ -142,6 +151,14 @@
           </div>
 
           <div class="venue-grid" id="venue-grid"></div>
+        </section>
+
+        <section class="photo-gallery section" id="photo-gallery" aria-labelledby="gallery-heading">
+          <div class="section-head">
+            <p class="eyebrow">mood gallery</p>
+            <h2 id="gallery-heading">성수를 설명하는 건 장소 이름만이 아니다.</h2>
+          </div>
+          <div class="gallery-grid" id="gallery-grid"></div>
         </section>
 
         <section class="map-explorer section" id="map-explorer" aria-labelledby="map-heading">
@@ -232,6 +249,9 @@
       crossorigin=""
     ></script>
     <script src="./data.js"></script>
+    <script src="./images.js"></script>
+    <script src="./route-clusters.js"></script>
+    <script src="./shared.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
